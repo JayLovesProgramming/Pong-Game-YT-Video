@@ -7,7 +7,6 @@
             "type": "cppvsdbg",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal"
         }
     ]
 }
