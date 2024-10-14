@@ -1,0 +1,24 @@
+# Set compiler and paths
+cc = g++
+vulkan_sdk = $env{VULKAN_SDK}
+includes = -Isrc -I$vulkan_sdk/Include
+links = -L$vulkan_sdk/Lib -lvulkan-1 -luser32
+defines = -DDEBUG -DWINDOWS_BUILD
+cflags = -g -Wall
+
+# Rule for compiling C++ files
+rule compile
+  command = $cc $cflags $defines $includes -c $in -o $out
+  description = Compiling $in
+
+# Rule for linking the object file to create the executable
+rule link
+  command = $cc $in $links -o $out
+  description = Linking $out
+
+# Build commands
+build obj/win32_platform.obj: compile src/platform/win32_platform.cpp
+build main.exe: link obj/win32_platform.obj
+
+# Default target
+default main.exe
