@@ -68,7 +68,7 @@ int main()
         return -1;
     };
 
-    if (!vk_init(&vkcontext, &window))
+    if (!vk_init(&vkcontext, window))
     {
         return -1;
     }
@@ -76,6 +76,7 @@ int main()
     while (running)
     {
         platform_update_window(window);
+        vk_render(&vkcontext);
     }
     return 0;
 }
